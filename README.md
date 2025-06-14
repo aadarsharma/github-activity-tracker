@@ -6,8 +6,8 @@ A real-time dashboard for monitoring GitHub webhook events, built with **React**
 
 ## 🚀 Live Demo & Walkthrough
 
-- **Live Application**: [LINK_TO_YOUR_HOSTED_FIREBASE_APP](https://github-activity-tracker-rouge.vercel.app/)
-- **Loom Video Walkthrough**: [LINK_TO_YOUR_LOOM_VIDEO](https://www.loom.com/share/97d61349bc5e4fdcbb59834f6129e01c?sid=c1aca747-8fbd-4afe-b116-5e16010a91d9)
+- **Live Application**: [host](https://github-activity-tracker-rouge.vercel.app/)
+- **Loom Video Walkthrough**: [video](https://www.loom.com/share/97d61349bc5e4fdcbb59834f6129e01c?sid=c1aca747-8fbd-4afe-b116-5e16010a91d9)
 
 ---
 
