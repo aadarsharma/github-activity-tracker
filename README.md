@@ -27,11 +27,11 @@ A real-time dashboard for monitoring GitHub webhook events, built with **React**
 ## 📸 Screenshots
 
 ### 💻 Desktop View
-> A clean, spacious layout for larger screens, showing all features.
+![Desktop View](./images/DesktopView.png)
 
 ### 📱 Mobile View
-> Fully responsive with stacked components for seamless mobile experience.
-
+![Mobile View](./images/IMG_0531.PNG)
+![Mobile View](./images/IMG_0532.PNG)
 ---
 
 ## 🛠️ Tech Stack & Architecture
