@@ -27,21 +27,16 @@ A real-time dashboard for monitoring GitHub webhook events, built with **React**
 ## 🛠️ Tech Stack & Architecture
 
 ### **Frontend**
-- React (with Hooks)
+- React
 - Vite
-
 ### **Backend**
 - Firebase Cloud Functions (Node.js)
-
 ### **Database**
 - Firestore (NoSQL)
-
 ### **Styling**
 - Tailwind CSS
-
 ### **Hosting**
 - Firebase Hosting
-
 ### **Simulation**
 - cURL / Postman for webhook payloads
 
