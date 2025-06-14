@@ -8,7 +8,7 @@ import AddEventForm from './components/AddEventForm.jsx';
 function App() {
   const [events, setEvents] = useState([]);
   const [activeFilter, setActiveFilter] = useState('all');
-  const lastUpdateTime = useRef(Date.now()); // Ref to store the last update time
+  const lastUpdateTime = useRef(Date.now());
 
   useEffect(() => {
     const q = query(collection(db, "events"), orderBy("timestamp", "desc"));
@@ -16,7 +16,9 @@ function App() {
       const now = Date.now();
       const newEventsData = [];
       querySnapshot.forEach((doc) => {
-        newEventsData.push({ id: doc.id, ...doc.data(), isNew: doc.data().timestamp?.toDate().getTime() > lastUpdateTime.current - 5000 }); // Consider events within the last 5 seconds as new
+        // Mark as new if the event timestamp is within the last 5 seconds of the last update
+        const isNew = doc.data().timestamp?.toDate().getTime() > lastUpdateTime.current - 5000;
+        newEventsData.push({ id: doc.id, ...doc.data(), isNew });
       });
       setEvents(newEventsData);
       lastUpdateTime.current = now;
@@ -32,7 +34,8 @@ function App() {
   return (
     <div className="bg-gray-100 min-h-screen font-sans text-gray-800 pb-12">
       <div className="text-center">
-        <header className="bg-gray-800 text-white p-6 mb-8 shadow-lg">
+        {/* Responsive Padding: Smaller on mobile (p-4), larger on sm screens and up */}
+        <header className="bg-gray-800 text-white p-4 sm:p-6 mb-8 shadow-lg">
           <h1 className="text-3xl md:text-4xl font-bold">📦 GitHub Webhook Activity Tracker</h1>
           <p className="text-gray-300 mt-1">Events are updated in real-time from Firestore.</p>
         </header>

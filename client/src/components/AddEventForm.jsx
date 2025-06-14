@@ -3,17 +3,15 @@ import { collection, addDoc, Timestamp } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
 
 const AddEventForm = () => {
-  // State for each form input
   const [repo, setRepo] = useState('');
   const [actor, setActor] = useState('');
-  const [type, setType] = useState('star'); // Default type
+  const [type, setType] = useState('star');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent page reload
+    e.preventDefault();
 
-    // Basic validation
     if (!repo.trim() || !actor.trim()) {
       setError('Repository and Actor names cannot be empty.');
       return;
@@ -22,20 +20,16 @@ const AddEventForm = () => {
     setIsLoading(true);
     setError('');
 
-    // Create the new event object
     const newEvent = {
       repo,
       actor,
       type,
-      timestamp: Timestamp.now(), // Use Firestore's Timestamp for consistency
+      timestamp: Timestamp.now(),
       details: `Manually added ${type} event`,
     };
 
     try {
-      // Add the new document to the 'events' collection
       await addDoc(collection(db, 'events'), newEvent);
-      
-      // Reset form fields on successful submission
       setRepo('');
       setActor('');
       setType('star');
@@ -48,10 +42,11 @@ const AddEventForm = () => {
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md mb-6">
-      <h2 className="text-2xl font-bold mb-4 text-gray-800">Add Event Manually</h2>
+    // Responsive Padding: smaller on mobile (p-4), larger on small screens and up (sm:p-6)
+    <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md mb-6">
+      {/* Responsive Text: larger on mobile (text-xl), even larger on small screens and up (sm:text-2xl) */}
+      <h2 className="text-xl sm:text-2xl font-bold mb-4 text-gray-800">Add Event Manually</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Repository Input */}
         <div>
           <label htmlFor="repo" className="block text-sm font-medium text-gray-700 text-left mb-1">
             Repository Name
@@ -62,11 +57,10 @@ const AddEventForm = () => {
             value={repo}
             onChange={(e) => setRepo(e.target.value)}
             placeholder="e.g., my-new-project"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-base"
           />
         </div>
 
-        {/* Actor Input */}
         <div>
           <label htmlFor="actor" className="block text-sm font-medium text-gray-700 text-left mb-1">
             Actor / Username
@@ -77,11 +71,10 @@ const AddEventForm = () => {
             value={actor}
             onChange={(e) => setActor(e.target.value)}
             placeholder="e.g., code-enthusiast"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-base"
           />
         </div>
 
-        {/* Event Type Select */}
         <div>
           <label htmlFor="type" className="block text-sm font-medium text-gray-700 text-left mb-1">
             Event Type
@@ -90,7 +83,7 @@ const AddEventForm = () => {
             id="type"
             value={type}
             onChange={(e) => setType(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-base"
           >
             <option value="star">Star ⭐</option>
             <option value="push">Push 🚀</option>
@@ -98,7 +91,6 @@ const AddEventForm = () => {
           </select>
         </div>
 
-        {/* Submit Button */}
         <button
           type="submit"
           disabled={isLoading}
@@ -107,7 +99,6 @@ const AddEventForm = () => {
           {isLoading ? 'Adding...' : 'Add Event'}
         </button>
 
-        {/* Error Message */}
         {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
       </form>
     </div>

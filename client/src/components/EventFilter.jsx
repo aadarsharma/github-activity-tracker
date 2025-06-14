@@ -4,9 +4,18 @@ const filterTypes = ['all', 'star', 'push', 'issue'];
 
 const EventFilter = ({ activeFilter, setFilter }) => {
   return (
-    <div className="bg-white p-4 rounded-lg shadow-md mb-6 flex flex-col sm:flex-row items-center justify-center gap-4">
-      <p className="font-semibold text-gray-700">Filter by type:</p>
-      <div className="flex flex-wrap gap-2">
+    // Responsive Gaps and Alignment:
+    // - On mobile (flex-col), items are centered with a smaller gap.
+    // - On small screens and up (sm:flex-row), items are in a row with a larger gap.
+    <div className="bg-white p-4 rounded-lg shadow-md mb-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-4">
+      
+      {/* Add flex-shrink-0 to prevent this text from being squished on small screens */}
+      <p className="font-semibold text-gray-700 flex-shrink-0">
+        Filter by type:
+      </p>
+
+      {/* Center the buttons on mobile */}
+      <div className="flex flex-wrap gap-2 justify-center">
         {filterTypes.map((type) => (
           <button
             key={type}
