@@ -71,7 +71,7 @@ npm install -g firebase-tools
 #### 1. Clone the Repository
 
 ```bash
-git clone [YOUR_GITHUB_REPO_LINK]
+git clone https://github.com/aadarsharma/github-activity-tracker.git
 cd github-activity-tracker
 ```
 
